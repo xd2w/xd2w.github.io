@@ -10,6 +10,6 @@ wheels/
 
 **/.DS_Store
 
-out/*/
-!out/asset
-!out/static
+docs/*/
+!docs/asset
+!docs/static

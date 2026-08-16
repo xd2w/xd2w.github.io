@@ -31,7 +31,7 @@ for lang in languages:
     common = json.loads(
         (ROOT / "content" / f"common/{lang}.json").read_text(encoding="utf-8")
     )
-    out_dir = ROOT / "out" / lang
+    out_dir = ROOT / "docs" / lang
     out_dir.mkdir(parents=True, exist_ok=True)
 
     for page in pages:
