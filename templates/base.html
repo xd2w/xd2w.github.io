@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ t.page_title }}</title>
+  <link rel="stylesheet" href="../static/style.css" />
+  <script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@v0.185.1/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.185.1/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a href="index.html" class="brand">{{ t.brand }}</a>
+      <div>
+        <a href="index.html">{{ t.nav_home }}</a>
+        <a href="about.html">{{ t.nav_about }}</a>
+        <!-- language switcher: links to the same page in each other language -->
+        {% for other_lang in languages if other_lang != lang %}
+        <a href="../{{ other_lang }}/{{ page }}.html">{{ other_lang|upper }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    <div class="wrap">{{ t.footer }}</div>
+  </footer>
+
+  <script src="../static/script.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <div class="wrap reveal markdown">
+    <h1>{{ t.about_heading }}</h1>
+    <p>{{ t.about_body }}</p>
+  </div>
+  <div class="wrap reveal">
+    <h2>{{ t.skills_heading }}</h2>
+    <p>{{ t.skills_list }}</p>
+  </div>
+  <div class="wrap reveal">
+    <h2>{{ t.lang_heading }}</h2>
+    <p>{{ t.lang_list }}</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    {{body|safe}}
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <h2>{{ t.contact_heading }}</h2>
+    <p>
+      <a href="https://linkedin.com" style="color: var(--accent);">LinkedIn</a> ·
+      <a href="https://github.com" style="color: var(--accent);">GitHub</a>
+    </p>
+  </div>
+</section>
+
+{% endblock %}

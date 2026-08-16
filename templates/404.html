@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<header class="hero">
+  <div class="wrap reveal">
+    <h1>{{ t.hero_title }}</h1>
+    <p>{{ t.hero_subtitle }}</p>
+  </div>
+</header>
+
+{% if body.strip() %}
+<section>
+  <div class="wrap reveal markdown">{{ body|safe }}</div>
+</section>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <div class="wrap reveal">
+    <h1>{{ t.project_title }}</h1>
+    <h2>{{ t.model_heading }}</h2>
+    <canvas id="model-canvas" data-geom="{{ t.geom_path }}"></canvas>
+    <p style="color: var(--text-muted); font-size: 0.85rem;">{{ t.model_hint }}</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal markdown">{{ body|safe }}</div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <h2>{{ t.details_heading }}</h2>
+    <p>{{ t.project_specs }}</p>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script type='module' src="../static/stl_viewer.js"></script>
+{% endblock %}
