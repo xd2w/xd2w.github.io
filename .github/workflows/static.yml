@@ -23,7 +23,7 @@ concurrency:
 
 jobs:
   # Single deploy job since we're just deploying
-  deploy:
+  build:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -31,17 +31,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: astral-sh/setup-uv
         uses: astral-sh/setup-uv@v10.0.1
-      - name: build the pages
-        run: |
-          uv sync
-          uv run build.py
-      - name: Upload artifact
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Build site
+        run: uv run python build.py
+
+      - name: Upload docs/ as Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: docs
+
+deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4
