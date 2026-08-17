@@ -43,10 +43,10 @@ jobs:
       - name: Build site
         run: uv run python build.py
 
-      - name: Upload docs/ as Pages artifact
+      - name: Upload public/ as Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: public
 
   deploy:
     needs: build

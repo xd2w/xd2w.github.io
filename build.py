@@ -12,6 +12,8 @@ env = Environment(loader=FileSystemLoader(ROOT / "templates"))
 languages = ["en", "jp"]
 pages = ["index", "about", "project", "404"]
 
+serve_dir = "public"
+
 # matches front-matter block --- ... ---
 FRONT_MATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n?(.*)$", re.DOTALL)
 
@@ -31,7 +33,7 @@ for lang in languages:
     common = json.loads(
         (ROOT / "content" / f"common/{lang}.json").read_text(encoding="utf-8")
     )
-    out_dir = ROOT / "docs" / lang
+    out_dir = ROOT / serve_dir / lang
     out_dir.mkdir(parents=True, exist_ok=True)
 
     for page in pages:
@@ -50,4 +52,4 @@ for lang in languages:
 
     print(f"Built {lang}: {', '.join(pages)}")
 
-print(f"\nDone. Output in {ROOT / 'dist'}")
+print(f"\nDone. Output in {ROOT / serve_dir}")
